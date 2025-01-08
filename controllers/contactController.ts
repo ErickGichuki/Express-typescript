@@ -8,7 +8,7 @@ export const createContact = async (req: Request, res: Response): Promise<void> 
 
     // Validate input
     if (!name || !email || !subject || !message) {
-      res.status(400).json({ error: 'All fields are required' });
+      res.status(400).json({ error: 'All fields are required'});
       return;
     }
 
