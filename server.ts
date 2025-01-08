@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import songsRoute from './routes/songs'
+import contactRoutes from './routes/contactRoutes'
 
 dotenv.config();
 
@@ -11,6 +12,9 @@ app.use(cors())
 app.use(bodyParser.json())
 
 app.use('/songs', songsRoute)
+app.use('/contacts', contactRoutes);
+
+
 app.get('/', (req: Request, res: Response) =>{
     res.json({message: "Hello world!!!"})
 })
