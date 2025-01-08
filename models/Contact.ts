@@ -1,7 +1,6 @@
 import { DataTypes } from 'sequelize';
-import sequelize from '../config/db'; // Adjust the path as needed
+import sequelize from '../config/db';
 
-// Define the Contact model
 const Contact = sequelize.define('Contact', {
   id: {
     type: DataTypes.INTEGER,
@@ -25,8 +24,8 @@ const Contact = sequelize.define('Contact', {
     allowNull: false,
   },
 }, {
-  tableName: 'Contacts', // Define the table name
-  timestamps: true,      // Automatically add `createdAt` and `updatedAt`
+  tableName: 'Contacts',
+  timestamps: true,   
 });
 
 export default Contact;

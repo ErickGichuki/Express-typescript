@@ -1,7 +1,6 @@
 import { DataTypes } from 'sequelize';
-import sequelize from '../config/db'; // Adjust the path as needed
+import sequelize from '../config/db';
 
-// Define the Song model
 const Song = sequelize.define('Song', {
   id: {
     type: DataTypes.INTEGER,
@@ -13,12 +12,12 @@ const Song = sequelize.define('Song', {
     allowNull: false,
   },
   lyrics: {
-    type: DataTypes.TEXT, // For potentially longer lyrics
+    type: DataTypes.TEXT,
     allowNull: false,
   },
 }, {
-  tableName: 'Songs', // Define the table name
-  timestamps: true,    // Automatically add `createdAt` and `updatedAt`
+  tableName: 'Songs', 
+  timestamps: true,   
 });
 
 export default Song;
