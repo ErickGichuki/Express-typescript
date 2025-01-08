@@ -4,6 +4,7 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import songsRoute from './routes/songs'
 import contactRoutes from './routes/contactRoutes'
+import userRoutes from './routes/userRoutes';
 
 dotenv.config();
 
@@ -13,6 +14,7 @@ app.use(bodyParser.json())
 
 app.use('/songs', songsRoute)
 app.use('/contacts', contactRoutes);
+app.use('/users', userRoutes);
 
 
 app.get('/', (req: Request, res: Response) =>{

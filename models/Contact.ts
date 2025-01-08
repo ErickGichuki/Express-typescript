@@ -30,7 +30,7 @@ class Contact extends Model<ContactAttributes, ContactCreationAttributes> implem
 Contact.init(
   {
     id: {
-      type: DataTypes.INTEGER.UNSIGNED,
+      type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
     },
