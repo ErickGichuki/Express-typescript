@@ -7,7 +7,7 @@ interface ContactAttributes {
   name: string;
   email: string;
   subject: string;
-  message: string;
+  message: Text;
 }
 
 // Define an interface for optional attributes during creation (i.e., without `id`)
@@ -19,7 +19,7 @@ class Contact extends Model<ContactAttributes, ContactCreationAttributes> implem
   public name!: string;
   public email!: string;
   public subject!: string;
-  public message!: string;
+  public message!: Text;
 
   // Add timestamps fields if you use Sequelize's default timestamps
   public readonly createdAt!: Date;
