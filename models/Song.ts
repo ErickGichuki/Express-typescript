@@ -5,7 +5,7 @@ import sequelize from '../config/db'; // Ensure this path is correct
 interface SongAttributes {
   id: number; // Primary key
   title: string;
-  lyrics: string;
+  lyrics: Text;
 }
 
 // Define an interface for optional attributes during creation
@@ -15,7 +15,7 @@ interface SongCreationAttributes extends Optional<SongAttributes, 'id'> {}
 class Song extends Model<SongAttributes, SongCreationAttributes> implements SongAttributes {
   public id!: number; // Non-null assertion for required fields
   public title!: string;
-  public lyrics!: string;
+  public lyrics!: Text;
 
   // Add timestamps fields if using Sequelize's default timestamps
   public readonly createdAt!: Date;
