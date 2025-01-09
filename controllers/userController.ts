@@ -3,7 +3,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import User from '../models/User';
 
-// Signup
+
 export const signup = async (req: Request, res: Response): Promise<Response> => {
   const { username, email, password } = req.body;
 
@@ -18,7 +18,6 @@ export const signup = async (req: Request, res: Response): Promise<Response> => 
   }
 };
 
-// Login
 export const login = async (req: Request, res: Response): Promise<Response> => {
   const { email, password } = req.body;
 
