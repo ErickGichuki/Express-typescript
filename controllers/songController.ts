@@ -26,6 +26,27 @@ export const getSongs = async (req: Request, res: Response): Promise<void> => {
   }
 };
 
+// export const updateSong = async (req: Request, res: Response): Promise<void> => {
+//   try {
+//     const { id } = req.params;
+//     const { title, lyrics } = req.body;
+
+//     const song = await Song.findByPk(id);
+//     if(!song){
+//       res.status(404).json({error: "song not found!"})
+//       return;
+//     }
+
+//     if (title) song.title = title;
+//     if (lyrics) song.lyrics =  lyrics;
+
+//     await song.save();
+//     res.status(201).json({success: "Updated successfully!!", song});
+//   } catch(err: any){
+//     res.status(500).json({error: err.message})
+//   }
+// }
+
 export const deleteSong = async (req: Request, res: Response): Promise<void> => {
   try {
     const { id } = req.params;
