@@ -1,10 +1,10 @@
 import request from 'supertest';
-import { app } from 'server'; // Ensure your server is imported correctly
-import Song from '../models/Song'; // Import your Song model
+import { app } from '../server'; // Adjust the path as needed
+import Song from '../models/Song'; // Adjust the path as needed
 
-// Mock the Song model methods
+// Mock the Song model
 jest.mock('../models/Song', () => ({
-  findAll: jest.fn(),
+  findAll: jest.fn(), // Mock the findAll method
 }));
 
 describe('Song Controller - getSongs', () => {
