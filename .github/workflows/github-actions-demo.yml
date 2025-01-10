@@ -8,6 +8,7 @@ jobs:
 
         env:
             DATABASE_URL: ${{ secrets.DATABASE_URL }}
+            PORT: ${{ secrets.PORT}}
 
         steps:
             - uses: actions/checkout@v4
