@@ -21,7 +21,9 @@ app.get('/', (req: Request, res: Response) =>{
     res.json({message: "Hello world!!!"})
 })
 
-const PORT = process.env.PORT || 3000
-app.listen(PORT, () => {
+if (process.env.NODE_ENV !== 'test'){
+    const PORT = process.env.PORT || 3000
+    app.listen(PORT, () => {
     console.log(`The server is running on port ${PORT}`)
-})
+    });
+}
