@@ -1,10 +1,12 @@
 import request from 'supertest';
-import { app } from '../server'; // Adjust the path as needed
-import Song from '../models/Song'; // Adjust the path as needed
+import { app } from '../server'; // Adjust the path as necessary
+import Song from '../models/Song'; // Adjust the path as necessary
 
 // Mock the Song model
 jest.mock('../models/Song', () => ({
-  findAll: jest.fn(), // Mock the findAll method
+  default: {
+    findAll: jest.fn(),
+  },
 }));
 
 describe('Song Controller - getSongs', () => {
@@ -17,10 +19,8 @@ describe('Song Controller - getSongs', () => {
 
     const response = await request(app).get('/songs');
 
-    // Verify that the response status is 200 (OK)
+    // Verify response status and body
     expect(response.status).toBe(200);
-
-    // Verify that the response body matches the expected songs array
     expect(response.body).toEqual([
       { id: 1, title: 'Song 1', lyrics: 'Lyrics 1' },
       { id: 2, title: 'Song 2', lyrics: 'Lyrics 2' },
@@ -33,10 +33,8 @@ describe('Song Controller - getSongs', () => {
 
     const response = await request(app).get('/songs');
 
-    // Verify that the response status is 500 (Internal Server Error)
+    // Verify response status and body
     expect(response.status).toBe(500);
-
-    // Verify that the response body contains the error message
     expect(response.body).toEqual({ error: 'Database error' });
   });
 });
