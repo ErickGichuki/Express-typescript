@@ -8,7 +8,7 @@ import userRoutes from './routes/userRoutes';
 
 dotenv.config();
 
-export const app = express();
+const app = express();
 app.use(cors())
 app.use(bodyParser.json())
 
@@ -27,3 +27,5 @@ if (process.env.NODE_ENV !== 'test'){
     console.log(`The server is running on port ${PORT}`)
     });
 }
+
+export default app
