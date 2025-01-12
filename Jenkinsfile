@@ -10,9 +10,9 @@ pipeline {
         PORT = credentials('PORT')                
     }
 
-    tools {
-        nodejs 'Node 20' // Ensure 'Node 20' is configured in Global Tool Configuration
-    }
+    // tools {
+    //     nodejs 'Node 20' // Ensure 'Node 20' is configured in Global Tool Configuration
+    // }
 
     stages {
         stage('Checkout Code') {
