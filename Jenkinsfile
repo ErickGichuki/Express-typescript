@@ -43,6 +43,13 @@ pipeline {
                 sh 'npm test'
             }
         }
+        stage('Post Actions') {
+            steps {
+                node {
+                    cleanWs()
+                }
+            }
+        }
     }
 
     post {
@@ -51,10 +58,6 @@ pipeline {
         }
         failure {
             echo 'Build or tests failed. Check the logs.'
-        }
-        always {
-            // Cleanup workspace to ensure no leftover artifacts
-            cleanWs()
         }
     }
 }
