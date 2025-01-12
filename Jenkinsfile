@@ -1,18 +1,19 @@
 pipeline {
-    agent {
-        docker {
-            image 'node:20' //image
-        }
-    }
+    agent any
+    // {
+    //     docker {
+    //         image 'node:20' //image
+    //     }
+    // }
 
     environment {
         DATABASE_URL = credentials('DATABASE_URL')
         PORT = credentials('PORT')                
     }
 
-    // tools {
-    //     nodejs 'Node 20' // Ensure 'Node 20' is configured in Global Tool Configuration
-    // }
+    tools {
+        nodejs 'Node 20' // Ensure 'Node 20' is configured in Global Tool Configuration
+    }
 
     stages {
         stage('Checkout Code') {
