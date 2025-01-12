@@ -1,18 +1,13 @@
 pipeline {
     agent any
-    // {
-    //     docker {
-    //         image 'node:20' //image
-    //     }
-    // }
 
     environment {
-        DATABASE_URL = credentials('DATABASE_URL')
-        PORT = credentials('PORT')                
+        DATABASE_URL = credentials('DATABASE_URL')  // Pulling from Jenkins credentials
+        PORT = credentials('PORT')                  // Pulling from Jenkins credentials
     }
 
     tools {
-        nodejs 'Node 20' // Ensure 'Node 20' is configured in Global Tool Configuration
+        nodejs 'Node 20'  // Make sure 'Node 20' is configured in Jenkins Global Tool Configuration
     }
 
     stages {
@@ -43,8 +38,10 @@ pipeline {
                 sh 'npm test'
             }
         }
+
         stage('Post Actions') {
             steps {
+                // Clean workspace after build and tests
                 cleanWs()
             }
         }
