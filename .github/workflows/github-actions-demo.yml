@@ -1,4 +1,4 @@
-name: Node.js project
+name: hymns app
 
 on: [push]
 
