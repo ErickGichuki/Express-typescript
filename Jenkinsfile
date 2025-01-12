@@ -45,9 +45,7 @@ pipeline {
         }
         stage('Post Actions') {
             steps {
-                node {
-                    cleanWs()
-                }
+                cleanWs()
             }
         }
     }
