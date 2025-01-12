@@ -14,8 +14,8 @@ describe('Contact Controller', () => {
     it('should create a new contact and return 201 status', async () => {
       const mockContact = {
         id: 1,
-        name: 'John Doe',
-        email: 'john@example.com',
+        name: 'Erick Gichuki',
+        email: 'erick@gichuki.com',
         subject: 'Inquiry',
         message: 'Hello, I have a question.',
       };
@@ -29,8 +29,8 @@ describe('Contact Controller', () => {
       expect(response.status).toBe(201);
       expect(response.body.message).toBe('Message sent successfully');
       expect(Contact.create).toHaveBeenCalledWith({
-        name: 'John Doe',
-        email: 'john@example.com',
+        name: 'Erick Gichuki',
+        email: 'erick@gichuki.com',
         subject: 'Inquiry',
         message: 'Hello, I have a question.',
       });
@@ -38,7 +38,7 @@ describe('Contact Controller', () => {
 
     it('should return 400 if any field is missing', async () => {
       const response = await request(app).post('/contacts').send({
-        name: 'John Doe',
+        name: 'Erick Gichuki',
         email: '',
         subject: 'Inquiry',
         message: 'Hello, I have a question.',
@@ -52,8 +52,8 @@ describe('Contact Controller', () => {
   describe('GET /contacts (getContacts)', () => {
     it('should return a list of contacts', async () => {
       const mockContacts = [
-        { id: 1, name: 'John Doe', email: 'john@example.com', subject: 'Inquiry', message: 'Hello' },
-        { id: 2, name: 'Jane Smith', email: 'jane@example.com', subject: 'Support', message: 'Help' },
+        { id: 1, name: 'Erick Gichuki', email: 'erick@gichuki.com', subject: 'Inquiry', message: 'Hello' },
+        { id: 2, name: 'Eve Nicole', email: 'eve@nicole.com', subject: 'Support', message: 'Help' },
       ];
 
       (Contact.findAll as jest.Mock).mockResolvedValue(mockContacts);
