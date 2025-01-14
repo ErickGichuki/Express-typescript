@@ -43,30 +43,6 @@ pipeline {
                 sh 'npm test'
             }
         }
-        stage('Deploy') {
-    steps {
-        script {
-            def remoteUser = 'ubuntu'
-            def remoteHost = '34.221.197.220'
-            def privateKey = '/home/ubuntu/Downloads/ci.pem'  // Full path to the private key
-            def targetDirectory = 'deployment'
-
-            // Ensure .ssh directory exists and has the correct permissions
-            sh """
-                mkdir -p /var/lib/jenkins/.ssh
-                chmod 700 /var/lib/jenkins/.ssh
-                ssh-keyscan -H ${remoteHost} >> /var/lib/jenkins/.ssh/known_hosts
-                chmod 644 /var/lib/jenkins/.ssh/known_hosts
-                scp -i ${privateKey} -r * ${remoteUser}@${remoteHost}:${targetDirectory}
-                ssh -i ${privateKey} ${remoteUser}@${remoteHost} <<EOF
-                    cd ${targetDirectory}
-                    npm install --production
-                    pm2 restart app || pm2 start server.js
-                EOF
-            """
-        }
-    }
-}
         stage('Post Actions') {
             steps {
                 cleanWs()
