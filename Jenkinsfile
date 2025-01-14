@@ -22,12 +22,6 @@ pipeline {
                 checkout scm
             }
         }
-        stage('Test Credentials') {
-            steps {
-                echo "DATABASE_URL is set: ${env.DATABASE_URL ? 'Yes' : 'No'}"
-                echo "PORT is set: ${env.PORT ? 'Yes' : 'No'}"
-            }
-        }
 
         stage('Install Dependencies') {
             steps {
