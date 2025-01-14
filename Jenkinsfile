@@ -7,7 +7,7 @@ pipeline {
     // }
 
     environment {
-        DATABASE_URL = 'postgresql://neondb_owner:ojRcupeC2BE8@ep-morning-fire-a5fv0rv8.us-east-2.aws.neon.tech/neondb?sslmode=require'
+        DATABASE_URL = credentials('DATABASE_URL')
         PORT = credentials('PORT')                
     }
 
