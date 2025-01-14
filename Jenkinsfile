@@ -43,25 +43,27 @@ pipeline {
                 sh 'npm test'
             }
         }
-        stage('Deploy'){
-            steps {
-                script {
-                    def remoteUser = 'ubuntu'
-                    def remoteHost = '34.221.197.220'
-                    def privateKey = 'Downloads/ci.pem'
-                    def targetDirectory = 'deployment'
+        stage('Deploy') {
+    steps {
+        script {
+            def remoteUser = 'ubuntu'
+            def remoteHost = '34.221.197.220'
+            def privateKey = '/home/erick/Downloads/ci.pem'  // Full path to the private key
+            def targetDirectory = 'deployment'
 
-                    sh """
-                    scp -i ${privateKey} -r * ${remoteUser}@${remoteHost}:${targetDirectory}
-                    ssh -i ${privateKey} ${remoteUser}@${remoteHost} <<EOF
+            // Add the host to known_hosts to avoid "Host key verification failed" error
+            sh """
+                ssh-keyscan -H ${remoteHost} >> ~/.ssh/known_hosts
+                scp -i ${privateKey} -r * ${remoteUser}@${remoteHost}:${targetDirectory}
+                ssh -i ${privateKey} ${remoteUser}@${remoteHost} <<EOF
                     cd ${targetDirectory}
                     npm install --production
                     pm2 restart app || pm2 start server.js
-                    EOF
-                    """
-                }
-            }
+                EOF
+            """
         }
+    }
+}
         stage('Post Actions') {
             steps {
                 cleanWs()
