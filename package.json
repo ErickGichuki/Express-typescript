@@ -6,7 +6,7 @@
     "start": "node dist/server.js",
     "dev": "nodemon server.ts",
     "build": "tsc -p .",
-    "test": "NODE_ENV=test jest"
+    "test": " jest"
   },
   "keywords": [],
   "author": "",
