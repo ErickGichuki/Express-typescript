@@ -46,10 +46,10 @@ pipeline {
         stage('Deploy'){
             steps {
                 script {
-                    def remoteUser = ''
-                    def remoteHost = ''
-                    def privateKey = ''
-                    def targetDirectory = ''
+                    def remoteUser = 'ubuntu'
+                    def remoteHost = '34.221.197.220'
+                    def privateKey = '/home/Downloads/ci.pem'
+                    def targetDirectory = '/home/ubuntu@ip-172-31-3-60/deployment'
 
                     sh """
                     scp -i ${privateKey} -r * ${remoteUser}@${remoteHost}:${targetDirectory}
