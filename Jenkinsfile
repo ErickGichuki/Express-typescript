@@ -51,9 +51,12 @@ pipeline {
             def privateKey = '/home/erick/Downloads/ci.pem'  // Full path to the private key
             def targetDirectory = 'deployment'
 
-            // Add the host to known_hosts to avoid "Host key verification failed" error
+            // Ensure .ssh directory exists and has the correct permissions
             sh """
-                ssh-keyscan -H ${remoteHost} >> ~/.ssh/known_hosts
+                mkdir -p /var/lib/jenkins/.ssh
+                chmod 700 /var/lib/jenkins/.ssh
+                ssh-keyscan -H ${remoteHost} >> /var/lib/jenkins/.ssh/known_hosts
+                chmod 644 /var/lib/jenkins/.ssh/known_hosts
                 scp -i ${privateKey} -r * ${remoteUser}@${remoteHost}:${targetDirectory}
                 ssh -i ${privateKey} ${remoteUser}@${remoteHost} <<EOF
                     cd ${targetDirectory}
