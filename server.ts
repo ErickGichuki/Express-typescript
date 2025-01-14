@@ -23,8 +23,10 @@ app.get('/', (req: Request, res: Response) =>{
 
 if (process.env.NODE_ENV !== 'test'){
     const PORT = process.env.PORT || 3000
+    const db = process.env.DATABASE_URL
     app.listen(PORT, () => {
     console.log(`The server is running on port ${PORT}`)
+    console.log(`The db url is ${db}`)
     });
 }
 
