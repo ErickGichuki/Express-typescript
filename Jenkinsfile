@@ -21,6 +21,11 @@ pipeline {
                 checkout scm
             }
         }
+        stage('Install Git') {
+            steps {
+                sh 'apt-get update && apt-get install -y git'
+            }
+        }
 
         stage('Install Dependencies') {
             steps {
