@@ -12,7 +12,7 @@ pipeline {
     }
 
     tools {
-        nodejs 'Node 20' // Ensure 'Node 20' is configured in Global Tool Configuration
+        nodejs 'Node 20' 
     }
 
     stages {
@@ -61,15 +61,3 @@ pipeline {
     }
 }
 
-// pipeline {
-//     agent any
-//     stages {
-//         stage('Check Docker') {
-//             steps {
-//                 script {
-//                     sh 'docker ps'
-//                 }
-//             }
-//         }
-//     }
-// }
