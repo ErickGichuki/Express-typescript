@@ -1,10 +1,5 @@
 pipeline {
     agent any
-    // {
-    //     docker {
-    //         image 'node:20'
-    //     }
-    // }
 
     environment {
         DATABASE_URL = credentials('DATABASE_URL')
