@@ -1,19 +1,18 @@
 pipeline {
-    agent any
-    // {
-    //     docker {
-    //         image 'node:20' //image
-    //     }
-    // }
+    agent{
+        docker {
+            image 'node:20'
+        }
+    }
 
     environment {
         DATABASE_URL = credentials('DATABASE_URL')
         PORT = credentials('PORT')                
     }
 
-    tools {
-        nodejs 'Node 20' // Ensure 'Node 20' is configured in Global Tool Configuration
-    }
+    // tools {
+    //     nodejs 'Node 20' // Ensure 'Node 20' is configured in Global Tool Configuration
+    // }
 
     stages {
         stage('Checkout Code') {
@@ -43,6 +42,25 @@ pipeline {
                 sh 'npm test'
             }
         }
+        stage('Deploy'){
+            steps {
+                script {
+                    def remoteUser = ''
+                    def remoteHost = ''
+                    def privateKey = ''
+                    def targetDirectory = ''
+
+                    sh """
+                    scp -i ${privateKey} -r * ${remoteUser}@${remoteHost}:${targetDirectory}
+                    ssh -i ${privateKey} ${remoteUser}@${remoteHost} <<EOF
+                    cd ${targetDirectory}
+                    npm install --production
+                    pm2 restart app || pm2 start server.js
+                    EOF
+                    """
+                }
+            }
+        }
         stage('Post Actions') {
             steps {
                 cleanWs()
@@ -52,10 +70,10 @@ pipeline {
 
     post {
         success {
-            echo 'Build and tests succeeded!'
+            echo 'Build, tests and deployment succeeded!'
         }
         failure {
-            echo 'Build or tests failed. Check the logs.'
+            echo 'Something went wrong. Check the logs.'
         }
     }
 }
