@@ -48,7 +48,7 @@ pipeline {
         script {
             def remoteUser = 'ubuntu'
             def remoteHost = '34.221.197.220'
-            def privateKey = '/home/erick/Downloads/ci.pem'  // Full path to the private key
+            def privateKey = '/home/ubuntu/Downloads/ci.pem'  // Full path to the private key
             def targetDirectory = 'deployment'
 
             // Ensure .ssh directory exists and has the correct permissions
